@@ -23,12 +23,17 @@ options(scipen = 999)  # Turn off scientific notations for numbers
 
 Download archive and read .csv file 
 ```{r}
-url <- "https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2FStormData.csv.bz2"
-download_dir <- getwd()
+zipFile <- "data.csv.bz2"
 
-zip_file <- paste(download_dir, "data.csv.bz2", sep = "/")
+if (!zipFile %in% dir()) 
+{
+    download.file("http://d396qusza40orc.cloudfront.net/repdata%2Fdata%2FStormData.csv.bz2", destfile = zipFile)
+}
 
-stormData <- read.csv(bzfile("data.csv.bz2"))
+if (!"stormData" %in% ls()) 
+{
+    stormData <- read.csv(bzfile(zipFile))
+}
 ```
 
 Get the total number of records and variables

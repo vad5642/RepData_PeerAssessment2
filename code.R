@@ -1,7 +1,7 @@
 
 
 #download_data()
-#stormData <- read.csv("data.csv")
+#stormData <- read.csv("dpppppata.csv")
 
 library(plyr)
 options(scipen = 999)  # Turn off scientific notations for numbers
@@ -10,7 +10,7 @@ url <- "https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2FStormData.csv.bz2
 download_dir <- getwd()
 
 zip_file <- paste(download_dir, "data.csv.bz2", sep = "/")
-
+download.file(url, zip_file)
 stormData <- read.csv(bzfile("data.csv.bz2"))
 
 # translate all letters to lowercase
