@@ -13,11 +13,15 @@ In this article, the impact of different weather events on public health and eco
 
 ##Basic settings
 
+Load libraries and get the R version info.
+
 ```{r}
 library(ggplot2)
 library(plyr)
 require(gridExtra)
 options(scipen = 999)  # Turn off scientific notations for numbers
+
+R.version
 ```
 
 
@@ -42,7 +46,7 @@ Get the total number of records and variables
 dim(stormData)
 ```
 
-Since event type format is not specified it is necessary to do some preprocessing to merge the same event records. For example, there are events with types "small hail", "Small Hail" and "SMALL HAIL". It is obviosly that these are the same type of event. So it is necessary to convert the case and substitute punctuation character with spaces. Of cause this simple preprocessing does not guarantied that all duplications are merged but results get better.
+Since event type format is not specified it is necessary to do some preprocessing to merge the same event records. For example, there are events with types "small hail", "Small Hail" and "SMALL HAIL". It is obviosly that these are the same type of event. In some cases there are punctuation characters in the event names. So to remove this duplications it is necessary to convert the case and substitute punctuation character with spaces. Of cause this simple preprocessing does not guarantied that all duplications are merged but results get better.
 
 ```{r}
 # translate all letters to lowercase
@@ -160,6 +164,7 @@ cropPlot <- qplot(type, data = cropDamage, weight = crop/1e9, geom = "bar") +
 
 grid.arrange(propertyPlot, cropPlot, ncol = 2)
 ```
+
 This figure shows that flash floods and thunderstorm winds cause the largest property damages. 
 
 The most severe weather event in terms of crop damage is the drought. In the last half century, it has caused about 14 billion dollars damage. Other severe crop-damage-causing events are floods and hails.
